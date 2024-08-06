@@ -2,11 +2,9 @@
 title: Home
 ---
 
-# LLMs 101: Introductory Workshop
-## Conference - DevConf.US 2024
+# LLMs 101: Introductory Workshop (DevConf.US 2024)
 ### Speakers: Aakanksha Duggal, Hema Veeradhi and Surya Prakash Pathak
 
-{% include figure.html img="uidaho-workshop.jpg" alt="intro image here" caption="Library workshop" width="75%" %}
 
 Are you curious to learn about Large Language Models (LLMs), but unsure how and where to begin? This workshop is designed with specifically you in mind. LLMs have emerged as powerful tools in natural language processing, yet their implementation poses challenges, particularly in managing computational resources effectively.
 
