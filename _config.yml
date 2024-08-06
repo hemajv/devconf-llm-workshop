@@ -8,18 +8,18 @@
 
 # Site settings
 # title appears in the header
-title: workshop-template
+title: LLMs 101 Workshop
 # description and keywords for meta tags
-description: "Create an OER workshop website quick and easy!"
-keywords: "workshops, OER, Open Education, websites, gh-pages, jekyll"
+description: "Introductory LLM workshop"
+keywords: "LLMs, workshop, introductory"
 
 # author settings for cc-by, appears in the footer
-author: evan will
-pub_year: 2018
-github_username: evanwill
+author: Red Hat
+pub_year: 2024
+github_username: hemajv
 
 # add the full url for the github repository
-repo: "https://github.com/evanwill/workshop-template"
+repo: "https://github.com/hemajv/devconf-llm-workshop/"
 
 # site urls
 # Optional if using GitHub Pages! If building manually, these must be set correctly.
