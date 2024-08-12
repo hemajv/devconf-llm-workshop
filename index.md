@@ -13,6 +13,9 @@ title: Home
 {% endfor %}
 </div>
 
+![DALL·E 2024-08-12 16 56 31 - A vibrant and engaging image for a 'LLM Workshop 101'  The scene shows a classroom or a workshop setting with diverse people engaging with technology](https://github.com/user-attachments/assets/4a53e73e-54c5-44f0-82ba-630f3e7a5351)
+
+
 Are you curious to learn about Large Language Models (LLMs), but unsure how and where to begin? This workshop is designed with specifically you in mind. LLMs have emerged as powerful tools in natural language processing, yet their implementation poses challenges, particularly in managing computational resources effectively.
 
 During this workshop, we will delve into the fundamentals of LLMs and guide you in selecting the appropriate open source models for your requirements. We will discuss the concept of self-hosted LLMs and introduce containerization technologies such as Kubernetes, Docker, and Podman. Through illustrative use-cases like RAG application, text generation or speech recognition, you will learn how to set up LLMs locally on your laptop and build container images for the models using Podman. We will also be exploring model serving and inference methods, including interaction with the model via a simple UI application. Moreover, the workshop will cover model evaluation techniques and introduce various metrics that can be utilized to effectively measure the performance and quality of model outputs.
