@@ -14,7 +14,7 @@ To run this workshop, you will need to have the following:
 
 ## Install Git
 
-If you do not have a GitHub account, you can create by visting: https://github.com/ and signup.
+If you do not have a GitHub account, you can create by visting: [https://github.com/](https://github.com/) and signup.
 
 **Mac Users**
   
@@ -22,7 +22,7 @@ You can install `git` for Mac by running:
 
 ```brew install git ```
 
-**Note**: In case if you do not have brew installed: visit: https://brew.sh/ 
+**Note**: In case if you do not have brew installed: visit: [https://brew.sh/](https://brew.sh/) 
 
 **Debian/Ubuntu Users**
 
@@ -38,7 +38,7 @@ You can isntall git by running:
 
 `winget install --id Git.Git -e --source winget`
 
-Alternatively, you can download and install Git from the official website: https://git-scm.com/download/win 
+Alternatively, you can download and install Git from the official website: [https://git-scm.com/download/win](https://git-scm.com/download/win)
 
 **Configure Git**:
 
@@ -70,7 +70,7 @@ You can install python by running:
 
 **Windows Users**
 
-1. Download Python from: https://www.python.org/downloads/  
+1. Download Python from: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 2. Run the installer and ensure you check "Add Python to PATH" during the installation.
 
 
@@ -114,7 +114,7 @@ Once its installed, try running:
 
 **For Windows**
 
-Please follow the steps listed here: https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md 
+Please follow the steps listed here: [https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md](https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md)
 
 Once its installed, try running:
 
