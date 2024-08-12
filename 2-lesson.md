@@ -1,47 +1,127 @@
 ---
-title: Start
+title: Guide
 nav: true
 ---
 
-# Get Started
+# Workshop Guide
 
-The `workshop-template` [repository](https://github.com/evanwill/workshop-template) is a template project--to get started quickly, make a copy and fill in your own content and customizations.
-This [site](https://evanwill.github.io/workshop-template/) demonstrates the output on gh-pages, and the content pages serve as examples.
+You can now follow these steps as we walk through the workshop. As mentioned in the `Intro` section, we will be setting up and experimenting with a RAG application using the ai-lab-recipe repository.
 
-Overview:
+## Step 1: Clone the repository
 
-1. Copy the code to your own repository by clicking the green "Use this template" button on [workshop-template](https://github.com/evanwill/workshop-template) (alternatively, import the [repository](https://github.com/evanwill/workshop-template) on GitHub or manually copy the files into a new repo).
-2. Clone to your local machine, or work on the GitHub web interface to edit files.
-3. Edit the `_config.yml` with your info.
-4. Edit the content pages in markdown.
-5. Add images to the "images" folder.
-5. Push to GitHub (or commit on the web interface).
-6. In your repo's settings, activate gh-pages, using main branch.
+Start by cloning the repository that contains the RAG application code. This repository hosts a variety of AI-related recipes, including the one for RAG.
 
-## Config
+`git clone https://github.com/containers/ai-lab-recipes.git`
 
-Edit the `_config.yml` to get your workshop website set up.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Pellentesque eu velit felis. 
-Duis fermentum est nec mollis scelerisque. Vivamus interdum efficitur mauris, et dignissim velit egestas vitae. 
-Cras dignissim sagittis varius. Pellentesque eu laoreet dui.
+## Step 2: Navigate to the RAG Application Directory
 
-```
-Praesent congue:
-    eros = eget
-    accumsan euismod
+Once cloned, navigate to the specific directory for the RAG application. This directory contains all the necessary code and resources for setting up the RAG system.
+
+`cd ai-lab-recipes/recipes/natural_language_processing/rag/app`
+
+## Step 3: Install Requirements
+
+We will need to install all the packages, libraries and dependencies required to run the RAG application. These are defined in the `requirements.txt` file.
+
+Let's first start a Python virtual env and install the dependencies within this virtual env.
+
+```python
+python3 -m venv venv
+source ./venv/bin/activate
 ```
 
-Praesent congue, eros eget accumsan euismod, lorem dui vulputate leo, tincidunt efficitur risus metus ut risus. 
-Sed pharetra ipsum orci, eu cursus turpis semper egestas. 
+Now, lets install all the packages:
 
-> Pellentesque sodales, felis auctor auctor rutrum, velit quam interdum erat, sit amet placerat urna nisl at justo.
+`pip install -r requirements.txt`
 
-## Substep
+## Step 4: Download Model
 
-Nam maximus eget orci id pretium. Pellentesque feugiat mauris eu nulla viverra consectetur. Nullam rutrum augue eget mauris accumsan, ac elementum tellus lacinia. Sed pretium aliquet tortor in ornare. Sed eget aliquet metus. Integer sed arcu turpis. Duis auctor sollicitudin semper. Cras posuere, neque nec varius cursus, massa libero sodales elit, sed tempor nibh ex sit amet nisi. Quisque consequat ante quis diam malesuada, in imperdiet tortor mattis. Aliquam erat volutpat. Morbi tortor elit, sagittis quis nibh ut, gravida cursus arcu.
+For this workshop, we recommend using the `granite-7b` lab model. It’s a well performing open sourced mid-sized model licensed under Apache-2.0 and served in the GGUF format.
 
-{% include figure.html img="uidaho-workshop.jpg" alt="workshop scene" caption="Be sure to replace all the example values!" width="75%" %}
+Navigate to the models directory and download the recommended model as follows:
 
-Ut dapibus lectus tristique efficitur dictum. Quisque efficitur ornare sagittis. Donec ex sem, volutpat quis scelerisque quis, scelerisque non neque. Vivamus convallis felis vel eros pulvinar faucibus. Aliquam finibus pretium odio a pharetra. Nullam ac commodo magna. Fusce et feugiat sem. Nunc vitae scelerisque metus. Aenean sodales placerat mi in aliquet. Curabitur pulvinar auctor mauris quis faucibus. Ut commodo imperdiet ante, at dignissim tellus ultricies ut. Donec at lacus ultrices sem vulputate semper. Donec commodo porta nunc, non tristique mi interdum quis. Phasellus rhoncus bibendum ipsum, ac malesuada augue pulvinar et. Etiam finibus lacus massa, sit amet faucibus lorem consequat sit amet. 
+```python
+cd ../../../../models 
+curl -sLO https://huggingface.co/instructlab/granite-7b-lab-GGUF/resolve/main/granite-7b-lab-Q4_K_M.gguf
+```
+
+This step will take a couple of minutes. After downloading, you will see the model in your directory, ready to be used in the RAG setup.
+
+## Step 5:  Deploy the Vector Database
+
+A vector database is essential for the retrieval part of the RAG application. It stores vector representations of documents that can be quickly searched.
+
+We will use Chromadb for this workshop. To deploy the Vector database service locally, simply use the Chromadb image. The vector database is ephemeral and will need to be re-populated each time the container restarts.
+
+In order to deploy, you can run the following:
+
+```python
+cd ../recipes/natural_language_processing/rag/app
+podman pull chromadb/chroma 
+podman run --rm -it -p 8000:8000 chroma 
+```
+
+Ensure the vector database is running and note the live endpoint. This will be used to store and retrieve document vectors.
+
+## Step 6: Start the Model Service
+
+In order to deploy the model service, first, open a new terminal (make sure the chromadb is still running) and navigate to the ai-labs-recipe repository that you have cloned.
+The model service is responsible for processing and generating text based on inputs and retrieved documents. We will use the llamacpp_python model service for this. Navigate to the model service directory:
+
+`cd ai-lab-recipes/model_servers/llamacpp_python`
+
+Build the model service
+
+```python
+podman build -t llamacppserver -f ./base/Containerfile .
+```
+
+Deploy the model service
+
+```python
+podman run --rm -it -p 8001:8001
+            -v /Users/path_to/ai-lab-recipes/models:/ai-lab-recipes/models:ro,Z
+            -e MODEL_PATH=/ai-lab-recipes/models/granite-7b-lab-Q4_K_M.gguf
+            -e HOST=0.0.0.0
+            -e PORT=8001 llamacppserver
+```
+
+## Step 7: Start the Streamlit app
+
+Now, open a new terminal window to run the Streamlit UI application. Here we will run the Streamlit application that ties everything together. This app provides the user interface to interact with the RAG system.
+
+In a new terminal, navigate back to RAG app directory:
+
+`cd ai-lab-recipes/recipes/natural_language_processing/rag/app`
+
+Run the Streamlit app:
+
+`streamlit run rag_app.py`
+
+**_Note_**: If you run into `AxiosError: Request failed with status code 403`, try doing the following:
+
+- Create a new folder `.streamlit` inside the `/app` directory
+- Create a `config.toml` file and add the following lines to it:
+  ```python
+  [server]
+  enableXsrfProtection = false
+  enableCORS = false
+  ```
+
+Once the application is running, you can upload your choice of documents and start asking questions related to them. The RAG system will use the uploaded documents to provide more accurate and contextually relevant answers.
+
+#### Congrats!! You have now successfully setup a LLM RAG application locally on your laptop using containerization techniques 🥳
+#### Give yourself a pat on the back!! 👏
+
+
+
+
+
+
+
+
+
+
+
+
