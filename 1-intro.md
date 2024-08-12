@@ -33,9 +33,12 @@ To learn more, check out this article [here](https://www.redhat.com/en/topics/co
 
 The `ai-lab-recipes` repository is a collaboration of data scientists and application developers that brings together best practices from both worlds. The result is a set of containerized AI-powered applications and tools that are fun to build, easy to run, and convenient to fork and make your own.
 
-AI Lab recipes started as the home for the Podman Desktop AI Lab extension’s sample applications, or recipes. There’s an excellent post that describes the AI Lab extension. In this article, we'll explore AI Lab Recipes further. We’ll use the code generation application as an example throughout. To follow along, clone the ai-lab-recipes repository locally. Also, if you don’t yet have Podman installed, head to podman.io.
+AI Lab recipes started as the home for the Podman Desktop AI Lab extension’s sample applications, or recipes. There’s an excellent post that describes the AI Lab extension. In this workshop, we'll explore AI Lab Recipes further. We’ll use the RAG application as an example throughout. To follow along, clone the ai-lab-recipes repository locally. Also, if you don’t yet have Podman installed, head to podman.io.
 
 There are several recipes to help developers quickly prototype new AI and large language model (LLM)-based applications. Each recipe includes the same main ingredients: models, model servers, and AI interfaces. These are combined in various ways, packaged as container images, and can be run as pods with Podman. The recipes are grouped into different categories (food groups) based on the AI functions. The current recipe groups are audio, computer vision, multimodal, and natural language processing. 
 
 **Repository**: [https://github.com/containers/ai-lab-recipes](https://github.com/containers/ai-lab-recipes)
+
+
+Now that we have understood all the major concepts, let's begin with the workshop! 🎆
 
