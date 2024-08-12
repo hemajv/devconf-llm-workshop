@@ -28,6 +28,29 @@ To learn more, check out this article [here](https://www.redhat.com/en/topics/co
 
 ## LLM RAG Application
 
+### LLMs
+
+Large language models (LLMs) are a category of foundation models trained on immense amounts of data making them capable of understanding and generating natural language and other types of content to perform a wide range of tasks.
+
+LLMs have become a household name thanks to the role they have played in bringing generative AI to the forefront of the public interest, as well as the point on which organizations are focusing to adopt artificial intelligence across numerous business functions and use cases.
+
+LLMs represent a significant breakthrough in NLP and artificial intelligence, and are easily accessible to the public through interfaces like Open AI’s Chat GPT-3 and GPT-4, which have garnered the support of Microsoft. Other examples include Meta’s Llama models and Google’s bidirectional encoder representations from transformers (BERT/RoBERTa) and PaLM models. IBM has also recently launched its Granite model series on watsonx.ai, which has become the generative AI backbone for other IBM products like watsonx Assistant and watsonx Orchestrate. 
+
+In a nutshell, LLMs are designed to understand and generate text like a human, in addition to other forms of content, based on the vast amount of data used to train them. They have the ability to infer from context, generate coherent and contextually relevant responses, translate to languages other than English, summarize text, answer questions (general conversation and FAQs) and even assist in creative writing or code generation tasks. 
+
+### RAG
+
+RAG, or Retrieval-Augmented Generation, is a method that combines the power of large language models (LLMs) with retrieval mechanisms to enhance the quality and relevance of the generated content. By leveraging external knowledge bases, RAG can provide more accurate and contextually appropriate responses. 
+
+Retrieval-Augmented Generation (RAG) improves response accuracy by first searching relevant documents, then generating answers based on them. This process begins with a user’s query. Instead of relying solely on pre-trained knowledge, RAG systems find content matching the query context. The retrieval step ensures responses are based on specific, relevant information. After finding the most pertinent documents, the language model synthesizes this information into a coherent response. This method enhances the quality and accuracy of AI responses, especially for complex queries needing current or specialized knowledge.
+
+Pictured below is a high level architecture diagram for RAG applications.
+
+![RAG](https://github.com/user-attachments/assets/bd78f1d5-7315-4774-850c-6c2c191c155c)
+
+#### The Role of Vector Search in RAG
+
+Vector search is key in RAG’s retrieval phase, going beyond keyword matching to grasp semantic nuances in language. It turns text into high-dimensional vectors using large dataset-trained models, capturing the semantic meaning of text. This enables search mechanisms to find information based on contextual similarity, not just exact word matches. By comparing query vectors with document vectors in a database, it identifies the closest semantic matches in a high-dimensional space, enhancing the retrieval accuracy for complex queries.
 
 ## AI Labs Recipes
 
