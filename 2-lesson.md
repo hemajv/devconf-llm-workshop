@@ -80,11 +80,14 @@ podman build -t llamacppserver -f ./base/Containerfile .
 Deploy the model service
 
 ```python
-podman run --rm -it -p 8001:8001
-            -v /Users/path_to/ai-lab-recipes/models:/ai-lab-recipes/models:ro,Z
-            -e MODEL_PATH=/ai-lab-recipes/models/granite-7b-lab-Q4_K_M.gguf
-            -e HOST=0.0.0.0
-            -e PORT=8001 llamacppserver
+podman run --rm -it \
+        -p 8001:8001 \
+        -v /<your path>/ai-lab-recipes/models:/ai-lab-recipes/models:ro,Z \
+        -e MODEL_PATH=/ai-lab-recipes/models/granite-7b-lab-Q4_K_M.gguf \
+        -e HOST=0.0.0.0 \
+        -e PORT=8001 \
+        llamacppserver
+
 ```
 
 ## Step 7: Start the Streamlit app
