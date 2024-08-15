@@ -90,6 +90,18 @@ podman run --rm -it \
 
 ```
 
+**OR**
+
+If you are unable to download the model GGUF file due to **SLOW INTERNET**, we have some services running which you can interact with instead. To do this, replace the `rag_app.py` line [here](https://github.com/containers/ai-lab-recipes/blob/main/recipes/natural_language_processing/rag/app/rag_app.py#L13) as follows:
+
+```python
+model_service = os.getenv("MODEL_ENDPOINT","https://tinyurl.com/devconf-model")
+```
+
+```python
+model_service = os.getenv("MODEL_ENDPOINT","https://tinyurl.com/devconf-model2")
+```
+
 ## Step 7: Start the Streamlit app
 
 Now, open a new terminal window to run the Streamlit UI application. Here we will run the Streamlit application that ties everything together. This app provides the user interface to interact with the RAG system.
